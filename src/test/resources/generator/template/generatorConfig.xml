@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+
+<!-- 官方版： http://www.mybatis.org/generator/configreference/xmlconfig.html -->
+<!-- 优秀中文版： https://www.jianshu.com/p/e09d2370b796 -->
+<generatorConfiguration>
+
+
+  <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+  <property name="beginningDelimiter" value="`"/>
+  <property name="endingDelimiter" value="`"/>
+  <!-- JavaBean 实现 序列化 接口 -->
+  <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+  
+  
+
+  <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+  	<property name="mappers" value="${basePackage}.common.service.Mapper"/>
+  </plugin>
+
+
+  	<!-- 注释生成 -->
+  	<commentGenerator type="generator.core.classes.MyCommentGenerator">
+  		<property name="suppressAllComments" value="true"/>
+  		<property name="suppressDate" value="true"/>
+  	</commentGenerator>
+  	<!-- 数据库连接 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://127.0.0.1:3306/test?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
+        userId="root"
+        password="076339">
+    </jdbcConnection>
+	<!-- 类型转换 -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	<!-- 表实体生成路径 -->
+    <javaModelGenerator targetPackage="${basePackage}.${moduleName}.bean" targetProject="../${parentArtifact}/${artifactId}/src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	<!-- 生成mapper文件的位置 -->
+    <sqlMapGenerator targetPackage="mapper"  targetProject="../${parentArtifact}/${artifactId}/src/main/resources/">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+	<!-- 生成mapper接口的位置 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="${basePackage}.${moduleName}.mapper"  targetProject="../${parentArtifact}/${artifactId}/src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+	
+	<table schema="mybatis" tableName="bg_navigator" domainObjectName="Navigator">
+		<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+	</table>
+    <!-- 
+	<table schema="mybatis" tableName="bg_blog_detail" domainObjectName="BlogDetail" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
+		<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+	</table>
+	<table schema="mybatis" tableName="bg_website_statistics" domainObjectName="WebsiteStatistics">
+		<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+	</table>
+	<table schema="mybatis" tableName="bg_tags" domainObjectName="Tags">
+		<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+	</table>
+    <table schema="mybatis" tableName="tb_spu_detail" domainObjectName="SpuDetail" delimitAllColumns="true">
+		<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+    </table>
+     -->
+  </context>
+</generatorConfiguration>
