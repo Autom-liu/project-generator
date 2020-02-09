@@ -10,7 +10,7 @@ public class ModulePathManager {
 	
 	private Path moduleBasePath;
 	
-	private Path mainClassPath;
+	private Path moduleMainClassPath;
 	
 	private Path modulePath;
 	
@@ -24,6 +24,8 @@ public class ModulePathManager {
 	
 	private Path moduleServicePath;
 	
+	private Path moduleServiceImplPath;
+	
 	private Path moduleVoPath;
 	
 	private Path moduleWebPath;
@@ -32,12 +34,13 @@ public class ModulePathManager {
 		this.moduleBasePath = basePath.resolve(projectName + "-" + moduleName);
 		Path path = Paths.get(basePackage, moduleName);
 		this.modulePath = this.moduleBasePath.resolve(PathManager.RELATEED_JAVA_PATH).resolve(path);
-		this.mainClassPath = this.moduleBasePath.resolve(PathManager.RELATEED_JAVA_PATH).resolve(basePackage);
+		this.moduleMainClassPath = this.moduleBasePath.resolve(PathManager.RELATEED_JAVA_PATH).resolve(basePackage);
 		this.moduleBeanPath = this.modulePath.resolve("bean");
 		this.moduleDtoPath = this.modulePath.resolve("dto");
 		this.moduleMapperPath = this.modulePath.resolve("mapper");
 		this.moduleQueryPath = this.modulePath.resolve("query");
 		this.moduleServicePath = this.modulePath.resolve("service");
+		this.moduleServiceImplPath = this.moduleServicePath.resolve("impl");
 		this.moduleVoPath = this.modulePath.resolve("vo");
 		this.moduleWebPath = this.modulePath.resolve("web/api");
 	}

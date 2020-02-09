@@ -84,11 +84,11 @@ public class MybatisExcutorImpl implements MybatisExcutor {
 						String line = iterator.next();
 						if(line.startsWith("public class")) {
 							iterator.remove();
-							iterator.add("public class " + className + " extends BaseExample {");
+							iterator.add("public class " + className + " implements BaseExample {");
 							iterator.previous();
 							iterator.add("");
 							iterator.previous();
-							iterator.add("import " + baseExamplePackage + ";");
+							iterator.add("import " + baseExamplePackage + ".BaseExample;");
 							break;
 						}
 					}

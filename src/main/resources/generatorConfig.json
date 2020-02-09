@@ -1,5 +1,5 @@
 {
-	"generateMode": "ENTITY_OVERRIDE",
+	"generateMode": "INTEGRATE",
 	"projectPath": "G:\\WebSpace\\myJee",
 	"groupId": "com.edu.scnu",
 	"artifactId": "ssp",
@@ -20,10 +20,35 @@
 			"moduleName": "core",
 			"artifactId": "ssp-core",
 			"enable": true,
+			"mainClass": "CoreApplication",
 			"tables": [
 				{
 					"tableName": "bg_navigator",
 					"domainObjectName": "Navigator",
+					"generatedKey": true,
+					"keyColumn": "id",
+					"sqlStatement": "SELECT LAST_INSERT_ID()",
+					"identity": true
+				}
+			]
+		},
+		{
+			"moduleName": "info",
+			"artifactId": "ssp-info",
+			"enable": true,
+			"mainClass": "InfoApplication",
+			"tables": [
+				{
+					"tableName": "bg_category",
+					"domainObjectName": "Category",
+					"generatedKey": true,
+					"keyColumn": "id",
+					"sqlStatement": "SELECT LAST_INSERT_ID()",
+					"identity": true
+				},
+				{
+					"tableName": "bg_tags",
+					"domainObjectName": "Tag",
 					"generatedKey": true,
 					"keyColumn": "id",
 					"sqlStatement": "SELECT LAST_INSERT_ID()",

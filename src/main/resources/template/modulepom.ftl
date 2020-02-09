@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+  </parent>
+  <artifactId>${moduleName}</artifactId>
+  <dependencies>
+  	<#list dependents as d>
+  	<dependency>
+  		<groupId>${d.groupId}</groupId>
+  		<artifactId>${d.moduleName}</artifactId>
+  		<version>${d.version}</version>
+  	</dependency>
+  	</#list>
+  </dependencies>
+  <build>
+  	<finalName>baseinfo</finalName>
+  	<plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <!-- 指定该Main Class为全局的唯一入口 -->
+                <mainClass>${groupId}.${moduleName}.${mainClass}</mainClass>
+                <layout>ZIP</layout>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>
+</project>

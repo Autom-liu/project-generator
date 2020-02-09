@@ -5,10 +5,13 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
+import generator.core.config.template.ModuleTemplateConfig.JavaFieldDesc;
 import generator.core.core.GeneratorFactory;
 import generator.core.core.GeneratorFactoryBuilder;
 import generator.core.resource.ConfigReader;
+import generator.core.resource.support.JavaFileReader;
 import generator.core.resource.support.JsonConfigReader;
 
 public class Main {
@@ -19,6 +22,7 @@ public class Main {
 		GeneratorFactory generatorFactory = new GeneratorFactoryBuilder().build(configReader);
 		generatorFactory.initializeExcutor();
 		generatorFactory.run();
+		
 		// generateTemplateKey("G:\\WebSpace\\myJee\\springboot-base\\springboot-base-common-service\\src\\main\\java\\com\\edu\\scnu\\common");
 		// Path path = Paths.get("G:\\WebSpace\\myJee\\springboot-base\\springboot-base-common-service\\src\\main\\java\\com\\edu\\scnu\\common", "config");
 		// generateCode(path, "getCommonSvcConfigPath");

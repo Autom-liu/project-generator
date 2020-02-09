@@ -11,4 +11,6 @@ public class DependentPomTemplateConfig extends BasePomTemplateConfig {
 
 	private List<BasePomTemplateConfig> dependents;
 	
+	private String mainClass;
+	
 }

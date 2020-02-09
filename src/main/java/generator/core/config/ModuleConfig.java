@@ -11,6 +11,8 @@ public class ModuleConfig {
 	
 	private String artifactId;
 	
+	private String mainClass;
+	
 	private boolean enable;
 	
 	private List<TableConfig> tables;
