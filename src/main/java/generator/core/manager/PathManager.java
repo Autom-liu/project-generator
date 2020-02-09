@@ -22,14 +22,6 @@ public class PathManager {
 	
 	public static final Path RELATEED_TEST_RESOURCE_PATH = Paths.get("src", "test", "resources");
 	
-	public static final Path PARENTPOM_TEMPLATE_PATH = RELATEED_RESOURCE_PATH.resolve("template/parentpom.ftl");
-	
-	public static final Path COMMONPOM_TEMPLATE_PATH = RELATEED_RESOURCE_PATH.resolve("template/commonpom.ftl");
-	
-	public static final Path BASESTATUSENUM_TEMPLATE_PATH = RELATEED_RESOURCE_PATH.resolve("template/BaseStatusEnum.ftl");
-	
-	public static final Path IERRORENUM_TEMPLATE_PATH = RELATEED_RESOURCE_PATH.resolve("template/IErrorEnum.ftl");
-	
 	private Path basePath;
 	
 	private Path baseCommonPath;
@@ -72,6 +64,10 @@ public class PathManager {
 	
 	private PathManager() {
 		this.modulePathManagerMap = new HashMap<>();
+	}
+	
+	public static Path resolveTemplatePath(String fileName) {
+		return RELATEED_RESOURCE_PATH.resolve("template/" + fileName);
 	}
 	
 	public static PathManager getInstance() {

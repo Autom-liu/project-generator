@@ -7,6 +7,7 @@ import generator.core.config.GenerateMode;
 import generator.core.config.MainConfig;
 import generator.core.core.exec.GenerateExcutor;
 import generator.core.core.exec.impl.CommonExcutor;
+import generator.core.core.exec.impl.CommonServiceExcutorImpl;
 import generator.core.core.exec.impl.ParentExcutor;
 import lombok.Data;
 
@@ -47,8 +48,10 @@ public class GeneratorFactory {
 	protected void initBaseExcutors() {
 		ParentExcutor parentExcutor = new ParentExcutor(configuration);
 		CommonExcutor commonExcutor = new CommonExcutor(configuration);
+		CommonServiceExcutorImpl serviceExcutorImpl = new CommonServiceExcutorImpl(configuration);
 		excutors.add(parentExcutor);
 		excutors.add(commonExcutor);
+		excutors.add(serviceExcutorImpl);
 	}
 
 }

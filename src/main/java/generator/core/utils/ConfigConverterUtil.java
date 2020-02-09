@@ -7,8 +7,12 @@ import generator.core.config.template.BaseTemplateConfig;
 public class ConfigConverterUtil {
 	
 	
-	public static BaseTemplateConfig getBaseTemplateConfig(MainConfig config, String moduleName) throws Exception {
-		return getBaseTemplateConfig(config, moduleName, BaseTemplateConfig.class);
+	public static BaseTemplateConfig getBaseTemplateConfig(MainConfig config, String moduleName) {
+		BaseTemplateConfig baseTemplateConfig = new BaseTemplateConfig();
+		String basePackage = config.getBasePackage();
+		baseTemplateConfig.setBasePackage(basePackage);
+		baseTemplateConfig.setModuleName(moduleName);
+		return baseTemplateConfig;
 	}
 
 	public static<T extends BaseTemplateConfig> T getBaseTemplateConfig(MainConfig config, String moduleName, Class<T> clazz) throws Exception {
@@ -20,8 +24,14 @@ public class ConfigConverterUtil {
 		return instance;
 	}
 	
-	public static BasePomTemplateConfig getBasePomTemplateConfig(MainConfig configuration, String moduleName) throws Exception {
-		return getBasePomTemplateConfig(configuration, moduleName, BasePomTemplateConfig.class);
+	public static BasePomTemplateConfig getBasePomTemplateConfig(MainConfig configuration, String moduleName) {
+		BasePomTemplateConfig basePomTemplateConfig = new BasePomTemplateConfig();
+		basePomTemplateConfig.setGroupId(configuration.getGroupId());
+		basePomTemplateConfig.setArtifactId(configuration.getArtifactId());
+		basePomTemplateConfig.setModuleName(moduleName);
+		basePomTemplateConfig.setVersion(configuration.getVersion());
+		basePomTemplateConfig.setDescription(configuration.getDescription());
+		return basePomTemplateConfig;
 	}
 	
 	public static<T extends BasePomTemplateConfig> T getBasePomTemplateConfig(MainConfig configuration, String moduleName, Class<T> clazz) throws Exception {

@@ -3,7 +3,7 @@
   <parent>
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${version}</version>
   </parent>
   <artifactId>${moduleName}</artifactId>
   

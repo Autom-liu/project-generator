@@ -36,7 +36,7 @@ public class ParentExcutor implements GenerateExcutor {
 		List<String> modules = configuration.getModules().stream().map(ModuleConfig::getArtifactId).collect(Collectors.toList());
 		parentPomConfig.setModules(modules);
 		Path toPath = pathManager.getBasePath().resolve("pom.xml");
-		GeneratorUtil.putTemplate(TemplateKey.PARENT_POM, GeneratorUtil.readTemplateString(PathManager.PARENTPOM_TEMPLATE_PATH));
+		GeneratorUtil.putTemplate(TemplateKey.PARENT_POM, GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("parentpom.ftl")));
 		GeneratorUtil.generate(TemplateKey.PARENT_POM, toPath, parentPomConfig);
 	}
 
