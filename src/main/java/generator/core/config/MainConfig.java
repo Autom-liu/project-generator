@@ -28,6 +28,8 @@ public class MainConfig {
 	
 	private String description;
 	
+	private DatabaseConfig databaseConfig;
+	
 	private List<ModuleConfig> modules;
 
 	public MainConfig() {

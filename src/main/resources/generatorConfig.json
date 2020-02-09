@@ -5,31 +5,31 @@
 	"artifactId": "ssp",
 	"version": "0.0.1-SNAPSHOT",
 	"basePackage": "com.edu.scnu",
+	"databaseConfig": {
+		"driverClass": "com.mysql.jdbc.Driver",
+		"connectIp": "127.0.0.1:3306/test",
+		"connectUrl": "jdbc:mysql://${connectIp}?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false",
+		"userId": "root",
+		"password": "123456",
+		"enableSubPackage": true,
+		"trimString": false,
+		"forceBigDecimals": false
+	},
 	"modules": [
 		{
 			"moduleName": "hahaha",
 			"artifactId": "hahaha",
 			"enable": true,
-			"databaseConfig": {
-				"driverClass": "com.mysql.jdbc.Driver",
-				"connectIp": "127.0.0.1:3306/test",
-				"connectUrl": "jdbc:mysql://${connectIp}?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false",
-				"userId": "root",
-				"password": "123456",
-				"enableSubPackage": true,
-				"trimString": false,
-				"forceBigDecimals": false,
-				"tables": [
-					{
-						"tableName": "aaa",
-						"domainObjectName": "Axx",
-						"generatedKey": false,
-						"keyColumn": "id",
-						"sqlStatement": "SELECT LAST_INSERT_ID()",
-						"identity": false
-					}
-				]
-			}
+			"tables": [
+				{
+					"tableName": "aaa",
+					"domainObjectName": "Axx",
+					"generatedKey": false,
+					"keyColumn": "id",
+					"sqlStatement": "SELECT LAST_INSERT_ID()",
+					"identity": false
+				}
+			]
 		}
 	]
 }

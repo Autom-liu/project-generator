@@ -1,7 +1,5 @@
 package generator.core.config;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
@@ -22,7 +20,5 @@ public class DatabaseConfig {
 	private boolean trimString;
 	
 	private boolean forceBigDecimals;
-	
-	private List<TableConfig> tables;
 	
 }

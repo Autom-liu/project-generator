@@ -1,5 +1,7 @@
 package generator.core.config;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,8 +12,8 @@ public class ModuleConfig {
 	private String artifactId;
 	
 	private boolean enable;
-
-	private DatabaseConfig databaseConfig;
+	
+	private List<TableConfig> tables;
 
 	public ModuleConfig() {
 		super();
