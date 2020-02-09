@@ -1,5 +1,5 @@
 {
-	"generateMode": "BASE",
+	"generateMode": "ENTITY_OVERRIDE",
 	"projectPath": "G:\\WebSpace\\myJee",
 	"groupId": "com.edu.scnu",
 	"artifactId": "ssp",
@@ -17,17 +17,17 @@
 	},
 	"modules": [
 		{
-			"moduleName": "hahaha",
-			"artifactId": "hahaha",
+			"moduleName": "core",
+			"artifactId": "ssp-core",
 			"enable": true,
 			"tables": [
 				{
-					"tableName": "aaa",
-					"domainObjectName": "Axx",
-					"generatedKey": false,
+					"tableName": "bg_navigator",
+					"domainObjectName": "Navigator",
+					"generatedKey": true,
 					"keyColumn": "id",
 					"sqlStatement": "SELECT LAST_INSERT_ID()",
-					"identity": false
+					"identity": true
 				}
 			]
 		}

@@ -5,9 +5,11 @@ import java.util.List;
 
 import generator.core.config.GenerateMode;
 import generator.core.config.MainConfig;
+import generator.core.config.ModuleConfig;
 import generator.core.core.exec.GenerateExcutor;
 import generator.core.core.exec.impl.CommonExcutor;
 import generator.core.core.exec.impl.CommonServiceExcutorImpl;
+import generator.core.core.exec.impl.MybatisExcutorImpl;
 import generator.core.core.exec.impl.ParentExcutor;
 import lombok.Data;
 
@@ -33,7 +35,7 @@ public class GeneratorFactory {
 		switch(generateMode) {
 		case BASE: initBaseExcutors(); break;
 		case MODULE: break;
-		case ENTITY_OVERRIDE: break;
+		case ENTITY_OVERRIDE: initOverrideExcutors(); break;
 		case INTEGRATE: break;
 		default: break;
 		}
@@ -52,6 +54,13 @@ public class GeneratorFactory {
 		excutors.add(parentExcutor);
 		excutors.add(commonExcutor);
 		excutors.add(serviceExcutorImpl);
+	}
+	
+	protected void initOverrideExcutors() {
+		for(ModuleConfig m : configuration.getModules()) {
+			MybatisExcutorImpl mybatisExcutorImpl = new MybatisExcutorImpl(configuration, m);
+			excutors.add(mybatisExcutorImpl);
+		}
 	}
 
 }
