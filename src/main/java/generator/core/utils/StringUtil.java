@@ -2,6 +2,8 @@ package generator.core.utils;
 
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 public class StringUtil {
 
 	
@@ -11,6 +13,10 @@ public class StringUtil {
 			sb.append(str + System.lineSeparator());
 		}
 		return sb.toString();
+	}
+	
+	public static String defaultString(String str) {
+		return StringUtils.isEmpty(str) ? "" : str;
 	}
 	
 }

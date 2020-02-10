@@ -13,19 +13,22 @@ import org.springframework.util.StringUtils;
 import generator.core.config.MainConfig;
 import generator.core.config.ModuleConfig;
 import generator.core.config.TableConfig;
+import generator.core.config.template.ApplicationYmlConfig;
 import generator.core.config.template.BasePomTemplateConfig;
 import generator.core.config.template.DependentPomTemplateConfig;
 import generator.core.config.template.ModuleTemplateConfig;
 import generator.core.config.template.ModuleTemplateConfig.JavaFieldDesc;
 import generator.core.core.exec.ModuleExcutor;
 import generator.core.core.exec.MybatisExcutor;
+import generator.core.core.exec.YmlExcutor;
 import generator.core.manager.ModulePathManager;
 import generator.core.manager.PathManager;
 import generator.core.resource.support.JavaFileReader;
 import generator.core.utils.ConfigConverterUtil;
 import generator.core.utils.GeneratorUtil;
+import generator.core.utils.TemplateKey;
 
-public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor {
+public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, YmlExcutor {
 	
 	private MybatisExcutor mybatisExcutor;
 	
@@ -71,7 +74,7 @@ public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor {
 			voGenerate(templateConfig);
 			webGenerate(templateConfig);
 		}
-		
+		applicationYmlGenerate();
 	}
 
 	@Override
@@ -163,6 +166,34 @@ public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor {
 		String templateString = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("MainApplication.ftl"));
 		GeneratorUtil.putTemplate(mainClass, templateString);
 		GeneratorUtil.generate(mainClass, toPath, moduleTemplateConfig);
+		
+	}
+
+	@Override
+	public void applicationYmlGenerate() throws Exception {
+		ApplicationYmlConfig ymlConfig = ConfigConverterUtil.getApplicationYmlConfig(configuration, moduleConfig);
+		String basePackage = configuration.getBasePackage();
+		String moduleName = moduleConfig.getModuleName();
+		ymlConfig.setBeanPackage(basePackage + "." + moduleName + ".bean");
+		Path toPath1 = modulePath.getModuleResourcePath().resolve("application.yml");
+		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("application.ftl"));
+		GeneratorUtil.putTemplate(moduleName + TemplateKey.APPLICATION_YML, templateString1);
+		GeneratorUtil.generate(moduleName + TemplateKey.APPLICATION_YML, toPath1, ymlConfig);
+		
+		Path toPath2 = modulePath.getModuleResourcePath().resolve("application-dev.yml");
+		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("application-dev.ftl"));
+		GeneratorUtil.putTemplate(moduleName + TemplateKey.APPLICATION_DEV_YML, templateString2);
+		GeneratorUtil.generate(moduleName + TemplateKey.APPLICATION_DEV_YML, toPath2, ymlConfig);
+		
+		Path toPath3 = modulePath.getModuleResourcePath().resolve("application-prod.yml");
+		String templateString3 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("application-prod.ftl"));
+		GeneratorUtil.putTemplate(moduleName + TemplateKey.APPLICATION_PROD_YML, templateString3);
+		GeneratorUtil.generate(moduleName + TemplateKey.APPLICATION_PROD_YML, toPath3, ymlConfig);
+		
+		Path toPath4 = modulePath.getModuleResourcePath().resolve("logback-spring.xml");
+		String templateString4 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("logback-spring.ftl"));
+		GeneratorUtil.putTemplate(moduleName + TemplateKey.LOGBACK_SPRING, templateString4);
+		GeneratorUtil.generate(moduleName + TemplateKey.LOGBACK_SPRING, toPath4, ymlConfig);
 		
 	}
 

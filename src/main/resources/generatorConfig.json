@@ -5,6 +5,7 @@
 	"artifactId": "ssp",
 	"version": "0.0.1-SNAPSHOT",
 	"basePackage": "com.edu.scnu",
+	"encryKey": "9s1bnDggSHPEc_G3",
 	"databaseConfig": {
 		"driverClass": "com.mysql.jdbc.Driver",
 		"connectIp": "127.0.0.1:3306/test",
@@ -21,6 +22,11 @@
 			"artifactId": "ssp-core",
 			"enable": true,
 			"mainClass": "CoreApplication",
+			"devLogPath": "G:\\WebSpace\\myJee\\logs\\ssp-core",
+			"prodLogPath": "/var/log/webapps/ssp-core",
+			"port": "9080",
+			"contextPath": "/api/core",
+			"applicationName": "ssp-core",
 			"tables": [
 				{
 					"tableName": "bg_navigator",
@@ -37,6 +43,11 @@
 			"artifactId": "ssp-info",
 			"enable": true,
 			"mainClass": "InfoApplication",
+			"devLogPath": "G:\\WebSpace\\myJee\\logs\\ssp-info",
+			"prodLogPath": "/var/log/webapps/ssp-info",
+			"port": "9083",
+			"contextPath": "/api/info",
+			"applicationName": "ssp-info",
 			"tables": [
 				{
 					"tableName": "bg_category",

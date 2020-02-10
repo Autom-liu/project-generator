@@ -3,6 +3,8 @@ package generator.core.utils;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.jasypt.util.text.BasicTextEncryptor;
 import org.mybatis.generator.config.CommentGeneratorConfiguration;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
@@ -14,11 +16,13 @@ import org.mybatis.generator.config.ModelType;
 import org.mybatis.generator.config.PluginConfiguration;
 import org.mybatis.generator.config.SqlMapGeneratorConfiguration;
 import org.mybatis.generator.config.TableConfiguration;
+import org.springframework.util.StringUtils;
 
 import generator.core.config.DatabaseConfig;
 import generator.core.config.MainConfig;
 import generator.core.config.ModuleConfig;
 import generator.core.config.TableConfig;
+import generator.core.config.template.ApplicationYmlConfig;
 import generator.core.config.template.BasePomTemplateConfig;
 import generator.core.config.template.BaseTemplateConfig;
 import generator.core.manager.ModulePathManager;
@@ -63,6 +67,38 @@ public class ConfigConverterUtil {
 		basePomTemplateConfig.setVersion(configuration.getVersion());
 		basePomTemplateConfig.setDescription(configuration.getDescription());
 		return basePomTemplateConfig;
+	}
+	
+	public static ApplicationYmlConfig getApplicationYmlConfig(MainConfig config, ModuleConfig moduleConfig) {
+		ApplicationYmlConfig applicationYmlConfig = new ApplicationYmlConfig();
+		DatabaseConfig dbConfig = config.getDatabaseConfig();
+		String connectIp = dbConfig.getConnectIp();
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		String encryKey = getEncryKey(config);
+		applicationYmlConfig.setEncryKey(encryKey);
+		textEncryptor.setPassword(encryKey);
+		String encodedIp = textEncryptor.encrypt(connectIp);
+		applicationYmlConfig.setEncryDataSourceIp(encodedIp);
+		String password = dbConfig.getPassword();
+		String encodePassword = textEncryptor.encrypt(password);
+		applicationYmlConfig.setEncryPassword(encodePassword);
+		if(moduleConfig != null) {
+			applicationYmlConfig.setDevLogPath(StringUtil.defaultString(moduleConfig.getDevLogPath()));
+			applicationYmlConfig.setProdLogPath(StringUtil.defaultString(moduleConfig.getProdLogPath()));
+			applicationYmlConfig.setPort(StringUtil.defaultString(moduleConfig.getPort()));
+			applicationYmlConfig.setContextPath(StringUtil.defaultString(moduleConfig.getContextPath()));
+			applicationYmlConfig.setApplicationName(StringUtil.defaultString(moduleConfig.getApplicationName()));
+		}
+		
+		return applicationYmlConfig;
+	}
+	
+	private static String getEncryKey(MainConfig config) {
+		String encryKey = config.getEncryKey();
+		if(StringUtils.isEmpty(encryKey)) {
+			return RandomStringUtils.randomAlphanumeric(16);
+		}
+		return encryKey;
 	}
 	
 	public static Configuration getMybatisConfiguration(MainConfig config, ModuleConfig moduleConfig, PathManager pathManager) {

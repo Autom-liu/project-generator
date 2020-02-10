@@ -15,6 +15,16 @@ public class ModuleConfig {
 	
 	private boolean enable;
 	
+	private String devLogPath;
+	
+	private String prodLogPath;
+	
+	private String port;
+	
+	private String contextPath;
+	
+	private String applicationName;
+	
 	private List<TableConfig> tables;
 
 	public ModuleConfig() {

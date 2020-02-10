@@ -4,16 +4,18 @@ import java.nio.file.Path;
 import java.util.Collections;
 
 import generator.core.config.MainConfig;
+import generator.core.config.template.ApplicationYmlConfig;
 import generator.core.config.template.BasePomTemplateConfig;
 import generator.core.config.template.BaseTemplateConfig;
 import generator.core.config.template.DependentPomTemplateConfig;
 import generator.core.core.exec.CommonServiceExcutor;
+import generator.core.core.exec.YmlExcutor;
 import generator.core.manager.PathManager;
 import generator.core.utils.ConfigConverterUtil;
 import generator.core.utils.GeneratorUtil;
 import generator.core.utils.TemplateKey;
 
-public class CommonServiceExcutorImpl extends ParentExcutor implements CommonServiceExcutor {
+public class CommonServiceExcutorImpl extends ParentExcutor implements CommonServiceExcutor, YmlExcutor {
 	
 	private BaseTemplateConfig templateConfig;
 
@@ -205,6 +207,28 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		serviceGenerate();
 		voGenerate();
 		webGenerate();
+		applicationYmlGenerate();
+	}
+
+	@Override
+	public void applicationYmlGenerate() throws Exception {
+		ApplicationYmlConfig ymlConfig = ConfigConverterUtil.getApplicationYmlConfig(configuration, null);
+
+		Path resourcePath = super.pathManager.getBaseCommonSvcPath().resolve(PathManager.RELATEED_RESOURCE_PATH);
+		Path toPath1 = resourcePath.resolve("application-common-dev.yml");
+		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("application-common.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.COMMON_SERVICE_YML, templateString1);
+		GeneratorUtil.generate(TemplateKey.COMMON_SERVICE_YML, toPath1, ymlConfig);
+		Path toPath2 = resourcePath.resolve("application-common-prod.yml");
+		GeneratorUtil.generate(TemplateKey.COMMON_SERVICE_YML, toPath2, ymlConfig);
+
+		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("application-database.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.COMMON_DATABASE_YML, templateString2);
+		Path toPath3 = resourcePath.resolve("application-database-dev.yml");
+		GeneratorUtil.generate(TemplateKey.COMMON_DATABASE_YML, toPath3, ymlConfig);
+		Path toPath4 = resourcePath.resolve("application-database-prod.yml");
+		GeneratorUtil.generate(TemplateKey.COMMON_DATABASE_YML, toPath4, ymlConfig);
+
 	}
 
 }

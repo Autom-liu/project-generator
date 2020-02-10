@@ -28,6 +28,8 @@ public class MainConfig {
 	
 	private String description;
 	
+	private String encryKey;
+	
 	private DatabaseConfig databaseConfig;
 	
 	private List<ModuleConfig> modules;

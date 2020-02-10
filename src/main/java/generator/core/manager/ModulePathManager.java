@@ -12,6 +12,8 @@ public class ModulePathManager {
 	
 	private Path moduleMainClassPath;
 	
+	private Path moduleResourcePath;
+	
 	private Path modulePath;
 	
 	private Path moduleBeanPath;
@@ -35,6 +37,7 @@ public class ModulePathManager {
 		Path path = Paths.get(basePackage, moduleName);
 		this.modulePath = this.moduleBasePath.resolve(PathManager.RELATEED_JAVA_PATH).resolve(path);
 		this.moduleMainClassPath = this.moduleBasePath.resolve(PathManager.RELATEED_JAVA_PATH).resolve(basePackage);
+		this.moduleResourcePath = this.moduleBasePath.resolve(PathManager.RELATEED_RESOURCE_PATH);
 		this.moduleBeanPath = this.modulePath.resolve("bean");
 		this.moduleDtoPath = this.modulePath.resolve("dto");
 		this.moduleMapperPath = this.modulePath.resolve("mapper");

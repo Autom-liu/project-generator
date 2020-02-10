@@ -8,6 +8,10 @@ public class TemplateKey {
 	
 	public static final String COMMON_SERVICE_POM = "COMMON_SERVICE_POM";
 	
+	public static final String COMMON_SERVICE_YML = "COMMON_SERVICE_YML";
+	
+	public static final String COMMON_DATABASE_YML = "COMMON_DATABASE_YML";
+	
 	public static final String BASE_STATUS_ENUM = "BASE_STATUS_ENUM";
 	
 	public static final String IERROR_ENUM = "IERROR_ENUM";
@@ -77,5 +81,12 @@ public class TemplateKey {
 	public static final String COMMON_REQUEST_BODY = "COMMON_REQUEST_BODY";
 	
 	public static final String PERMISSION_REQUIRE = "PERMISSION_REQUIRE";
+	
+	public static final String APPLICATION_YML = "APPLICATION_YML";
+	
+	public static final String APPLICATION_DEV_YML = "APPLICATION_DEV_YML";
+	
+	public static final String APPLICATION_PROD_YML = "APPLICATION_PROD_YML";
 
+	public static final String LOGBACK_SPRING = "LOGBACK_SPRING";
 }
