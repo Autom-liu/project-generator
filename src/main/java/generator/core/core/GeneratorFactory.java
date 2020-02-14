@@ -1,8 +1,5 @@
 package generator.core.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import generator.core.config.GenerateMode;
 import generator.core.config.MainConfig;
 import generator.core.config.ModuleConfig;
@@ -18,62 +15,54 @@ import lombok.Data;
 public class GeneratorFactory {
 	
 	private MainConfig configuration;
-	
-	private List<GenerateExcutor> excutors;
 
 	public GeneratorFactory(MainConfig configuration) {
 		super();
 		this.configuration = configuration;
-		this.excutors = new ArrayList<>();
 	}
 	
-	public void initializeExcutor() {
+	public Generator openGenerator() {
 		GenerateMode generateMode = configuration.getGenerateMode();
 		if(generateMode == null) {
 			throw new RuntimeException("generateMode 值非法");
 		}
-		
+		Generator generator = new Generator();
 		switch(generateMode) {
-		case BASE: initBaseExcutors(); break;
-		case MODULE: initModuleExcutors(); break;
-		case ENTITY_OVERRIDE: initOverrideExcutors(); break;
-		case INTEGRATE: initAllExcutors(); break;
+		case BASE: initBaseExcutors(generator); break;
+		case MODULE: initModuleExcutors(generator); break;
+		case ENTITY_OVERRIDE: initOverrideExcutors(generator); break;
+		case INTEGRATE: initAllExcutors(generator); break;
 		default: break;
 		}
+		return generator;
 	}
 	
-	public void run() throws Exception {
-		for(GenerateExcutor excutor : excutors) {
-			excutor.generate();
-		}
-	}
-	
-	protected void initBaseExcutors() {
+	protected void initBaseExcutors(Generator generator) {
 		ParentExcutor parentExcutor = new ParentExcutor(configuration);
 		CommonExcutor commonExcutor = new CommonExcutor(configuration);
 		CommonServiceExcutorImpl serviceExcutorImpl = new CommonServiceExcutorImpl(configuration);
-		excutors.add(parentExcutor);
-		excutors.add(commonExcutor);
-		excutors.add(serviceExcutorImpl);
+		generator.addExcutor(parentExcutor);
+		generator.addExcutor(commonExcutor);
+		generator.addExcutor(serviceExcutorImpl);
 	}
 	
-	protected void initOverrideExcutors() {
+	protected void initOverrideExcutors(Generator generator) {
 		for(ModuleConfig m : configuration.getModules()) {
 			MybatisExcutorImpl mybatisExcutorImpl = new MybatisExcutorImpl(configuration, m);
-			excutors.add(mybatisExcutorImpl);
+			generator.addExcutor(mybatisExcutorImpl);
 		}
 	}
 	
-	protected void initModuleExcutors() {
+	protected void initModuleExcutors(Generator generator) {
 		for(ModuleConfig m : configuration.getModules()) {
 			GenerateExcutor excutor = new ModuleExcutorImpl(configuration, m);
-			excutors.add(excutor);
+			generator.addExcutor(excutor);
 		}
 	}
 	
-	protected void initAllExcutors() {
-		initBaseExcutors();
-		initModuleExcutors();
+	protected void initAllExcutors(Generator generator) {
+		initBaseExcutors(generator);
+		initModuleExcutors(generator);
 	}
 
 }
