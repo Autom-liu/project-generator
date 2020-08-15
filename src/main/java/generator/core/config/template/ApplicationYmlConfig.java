@@ -9,6 +9,8 @@ public class ApplicationYmlConfig {
 	
 	private String encryPassword;
 	
+	private String userId;
+	
 	private String encryKey;
 	
 	private String devLogPath;

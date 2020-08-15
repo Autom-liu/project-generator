@@ -82,6 +82,7 @@ public class ConfigConverterUtil {
 		String password = dbConfig.getPassword();
 		String encodePassword = textEncryptor.encrypt(password);
 		applicationYmlConfig.setEncryPassword(encodePassword);
+		applicationYmlConfig.setUserId(dbConfig.getUserId());
 		if(moduleConfig != null) {
 			applicationYmlConfig.setDevLogPath(StringUtil.defaultString(moduleConfig.getDevLogPath()));
 			applicationYmlConfig.setProdLogPath(StringUtil.defaultString(moduleConfig.getProdLogPath()));
@@ -106,6 +107,8 @@ public class ConfigConverterUtil {
 		Context context = new Context(ModelType.FLAT);
 		context.setId("DB2Tables");
 		context.setTargetRuntime("MyBatis3");
+		context.addProperty("beginningDelimiter", "`");
+		context.addProperty("endingDelimiter", "`");
 		String moduleName = moduleConfig.getModuleName();
 		DatabaseConfig databaseConfig = config.getDatabaseConfig();
 		JDBCConnectionConfiguration connectionConfiguration = getJDBCConnectionConfiguration(databaseConfig);
@@ -201,6 +204,7 @@ public class ConfigConverterUtil {
 		tableConfiguration.setSchema("mybatis");
 		tableConfiguration.setTableName(tableCfg.getTableName());
 		tableConfiguration.setDomainObjectName(tableCfg.getDomainObjectName());
+		tableConfiguration.setAllColumnDelimitingEnabled(true);
 		if(tableCfg.isGeneratedKey()) {
 			GeneratedKey generatedKey = new GeneratedKey(tableCfg.getKeyColumn(), tableCfg.getSqlStatement(), tableCfg.isIdentity(), null);
 			tableConfiguration.setGeneratedKey(generatedKey);

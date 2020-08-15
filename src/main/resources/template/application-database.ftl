@@ -1,12 +1,12 @@
 datasource:
-  ip: ENC(WZBRZkAor/oLYGZZEHFL75uct0dfrxS3ImPAz4p6vSI651ZkjIOdbw==)
+  ip: ENC(${encryDataSourceIp})
  
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://${r'${datasource.ip}'}?characterEncoding=utf-8&useSSL=false
-    username: blog
-    password: ENC(WxPthLpYNeiRQKX0ejRAdA==)
+    username: ${userId}
+    password: ENC(${encryPassword})
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initialSize: 1                            # 初始化大小
