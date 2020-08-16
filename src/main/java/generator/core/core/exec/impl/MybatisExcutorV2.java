@@ -17,7 +17,6 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,22 +35,26 @@ public class MybatisExcutorV2 extends MybatisExcutorImpl {
 
     private static final String endingDelimiter = "`";
 
+    private static final Map<String, String> javaTypeMapping = new HashMap<>();
+
     private static final Map<String, String> jdbcTypeMapping = new HashMap<>();
 
     static {
-        jdbcTypeMapping.put("int", "Integer");
-        jdbcTypeMapping.put("tinyint", "Integer");
-        jdbcTypeMapping.put("integer", "Integer");
-        jdbcTypeMapping.put("bigint", "Long");
-        jdbcTypeMapping.put("float", "Float");
-        jdbcTypeMapping.put("double", "Double");
-        jdbcTypeMapping.put("decimal", "BigDecimal");
-        jdbcTypeMapping.put("tinyInt", "Integer");
-        jdbcTypeMapping.put("varchar", "String");
-        jdbcTypeMapping.put("char", "String");
-        jdbcTypeMapping.put("date", "Date");
-        jdbcTypeMapping.put("dateTime", "Date");
-        jdbcTypeMapping.put("timestamp", "Date");
+        javaTypeMapping.put("int", "Integer");
+        javaTypeMapping.put("tinyint", "Integer");
+        javaTypeMapping.put("integer", "Integer");
+        javaTypeMapping.put("bigint", "Long");
+        javaTypeMapping.put("float", "Float");
+        javaTypeMapping.put("double", "Double");
+        javaTypeMapping.put("decimal", "BigDecimal");
+        javaTypeMapping.put("tinyInt", "Integer");
+        javaTypeMapping.put("varchar", "String");
+        javaTypeMapping.put("char", "String");
+        javaTypeMapping.put("date", "Date");
+        javaTypeMapping.put("dateTime", "Date");
+        javaTypeMapping.put("timestamp", "Date");
+
+        jdbcTypeMapping.put("INT", "INTEGER");
     }
 
     /**
@@ -109,10 +112,16 @@ public class MybatisExcutorV2 extends MybatisExcutorImpl {
     private void initTableColumns(List<TableColumn> tableColumns) {
         for (TableColumn tableColumn : tableColumns) {
             final String javaField = StringUtil.lineToHump(StringUtils.uncapitalize(tableColumn.getColumn()));
-            final String javaType = jdbcTypeMapping.get(tableColumn.getDataType());
+            final String javaType = javaTypeMapping.get(tableColumn.getDataType());
             tableColumn.setJavaField(javaField);
             tableColumn.setJavaType(javaType);
+            tableColumn.setOriginColumn(tableColumn.getColumn());
             tableColumn.setColumn(beginningDelimiter + tableColumn.getColumn() + endingDelimiter);
+            String jdbcType = tableColumn.getDataType().toUpperCase();
+            if (jdbcTypeMapping.containsKey(jdbcType)) {
+                jdbcType = jdbcTypeMapping.get(jdbcType);
+            }
+            tableColumn.setJdbcType(jdbcType);
         }
     }
 }

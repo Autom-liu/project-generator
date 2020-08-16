@@ -19,7 +19,7 @@ public class ${domainObjectName} {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 </#if>
-    @Column("${field.column}")
+    @Column(name = "${field.column}")
     private ${field.javaType} ${field.javaField};
 
 </#list>

@@ -8,6 +8,8 @@ public class TableColumn {
 
     private String column;
 
+    private String originColumn;
+
     private String dataType;
 
     private String characterMaximnmLength;
@@ -19,6 +21,8 @@ public class TableColumn {
     private String javaField;
 
     private String javaType;
+
+    private String jdbcType;
 
     public TableColumn(String column, String dataType, String characterMaximnmLength, String comment, Boolean isPrimary) {
         this.column = column;

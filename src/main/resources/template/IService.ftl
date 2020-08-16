@@ -20,7 +20,7 @@ public interface IService<T, DTO, VO> {
 	
 	List<VO> findByIds(List<Integer> ids) throws BizException;
 	
-	int insert(DTO dto) throws BizException;
+	T insert(DTO dto) throws BizException;
 	
 	int deleteById(Integer id) throws BizException;
 	

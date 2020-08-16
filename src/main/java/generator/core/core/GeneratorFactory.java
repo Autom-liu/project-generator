@@ -4,6 +4,7 @@ import generator.core.config.GenerateMode;
 import generator.core.config.MainConfig;
 import generator.core.config.ModuleConfig;
 import generator.core.core.exec.GenerateExcutor;
+import generator.core.core.exec.MybatisExcutor;
 import generator.core.core.exec.impl.CommonExcutor;
 import generator.core.core.exec.impl.CommonServiceExcutorImpl;
 import generator.core.core.exec.impl.ModuleExcutorImpl;
@@ -56,8 +57,9 @@ public class GeneratorFactory {
 	
 	protected void initModuleExcutors(Generator generator) {
 		for(ModuleConfig m : configuration.getModules()) {
-			GenerateExcutor excutor = new ModuleExcutorImpl(configuration, m);
-			generator.addExcutor(excutor);
+			MybatisExcutor mybatisExcutor = new MybatisExcutorV2(configuration, m);
+			GenerateExcutor executor = new ModuleExcutorImpl(configuration, m, mybatisExcutor);
+			generator.addExcutor(executor);
 		}
 	}
 	

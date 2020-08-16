@@ -4,9 +4,9 @@
     <resultMap id="BaseResultMap" type="${basePackage}.${moduleName}.bean.${domainObjectName}">
         <#list columns as field>
         <#if field.isPrimary>
-            <id column="${field.column}" jdbcType="${field.dataType}" property="${field.javaField}" />
+            <id column="${field.originColumn}" jdbcType="${field.jdbcType}" property="${field.javaField}" />
         <#else >
-            <result column="${field.column}" jdbcType="${field.dataType}" property="${field.javaField}" />
+            <result column="${field.originColumn}" jdbcType="${field.jdbcType}" property="${field.javaField}" />
         </#if>
         </#list>
     </resultMap>
