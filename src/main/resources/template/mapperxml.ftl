@@ -59,7 +59,7 @@
     <select id="selectByExample" parameterType="com.edu.scnu.common.query.QueryBuilder" resultMap="BaseResultMap">
         select
         <include refid="Select_Column_List" />
-        from idnt_app
+        from ${tableName}
         <if test="_parameter != null">
             <include refid="Where_Clause" />
         </if>
@@ -72,13 +72,13 @@
     </select>
 
     <delete id="deleteByExample" parameterType="com.edu.scnu.common.query.QueryBuilder">
-        delete from idnt_app
+        delete from ${tableName}
         <if test="_parameter != null">
             <include refid="Where_Clause" />
         </if>
     </delete>
     <select id="countByExample" parameterType="com.edu.scnu.common.query.QueryBuilder" resultType="java.lang.Long">
-        select count(*) from idnt_app
+        select count(*) from ${tableName}
         <if test="_parameter != null">
             <include refid="Where_Clause" />
         </if>

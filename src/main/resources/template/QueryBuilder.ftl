@@ -88,14 +88,14 @@ public class QueryBuilder<T> {
     }
 
     public QueryBuilder<T> limit(int fetchNum) {
-        if (limitClause != null) {
+        if (limitClause == null) {
             this.limitClause = new LimitClause(fetchNum);
         }
         return this;
     }
 
     public QueryBuilder<T> limit(int beginNum, int fetchNum) {
-        if (limitClause != null) {
+        if (limitClause == null) {
             this.limitClause = new LimitClause(beginNum, fetchNum);
         }
         return this;
