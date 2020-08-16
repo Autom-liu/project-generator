@@ -1,5 +1,7 @@
 package ${basePackage}.${moduleName}.web.api;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,13 +51,13 @@ public class ${className} {
     }
 
     @PostMapping("/add")
-    public IResult add(@RequestBody ${dtoClassName} entityDto) throws BizException {
+    public IResult add(@RequestBody @Valid ${dtoClassName} entityDto) throws BizException {
         ${beanClassName} result = apiService.insert(entityDto);
         return Result.success(result);
     }
 
     @PostMapping("/update")
-    public IResult update(@RequestBody ${dtoClassName} entityDto) throws BizException {
+    public IResult update(@RequestBody @Valid ${dtoClassName} entityDto) throws BizException {
         Integer rows = apiService.updateByIdSelective(entityDto);
         return rows > 0 ? Result.success(rows) : IResult.error(ErrorEnum.ERRCODE_0404);
     }

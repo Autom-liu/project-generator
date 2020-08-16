@@ -13,8 +13,8 @@ import lombok.Data;
 public class ${className} implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    <#list javaFields as f>
-    private ${f.type} ${f.variableName};
+    <#list columns as f>
+    private ${f.javaType} ${f.javaField};
     
     </#list>
 }

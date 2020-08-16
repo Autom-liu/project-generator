@@ -24,6 +24,8 @@ public class TableColumn {
 
     private String jdbcType;
 
+    private Boolean isNullable;
+
     public TableColumn(String column, String dataType, String characterMaximnmLength, String comment, Boolean isPrimary) {
         this.column = column;
         this.dataType = dataType;

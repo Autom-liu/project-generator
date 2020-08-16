@@ -42,7 +42,7 @@ public class DBUtil {
 
     public static List<TableColumn> descColumnList(TableConfig tableConfig) {
         String tableName = tableConfig.getTableName();
-        String sql = "select COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, COLUMN_KEY, COLUMN_COMMENT from INFORMATION_SCHEMA.Columns where table_name= ?";
+        String sql = "select COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, COLUMN_KEY, COLUMN_COMMENT, IS_NULLABLE from INFORMATION_SCHEMA.Columns where table_name= ?";
         final List<TableColumn> result = new ArrayList<>();
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setString(1, tableName);
@@ -53,8 +53,11 @@ public class DBUtil {
                     final String characterMaximumLength = rs.getString("CHARACTER_MAXIMUM_LENGTH");
                     final String columnKey = rs.getString("COLUMN_KEY");
                     final String columnComment = rs.getString("COLUMN_COMMENT");
+                    final String nullable = rs.getString("IS_NULLABLE");
                     Boolean isPrimary = "PRI".equals(columnKey);
+                    Boolean isNullable = "YES".equals(nullable);
                     final TableColumn tableColumn = new TableColumn(columnName, dataType, characterMaximumLength, columnComment, isPrimary);
+                    tableColumn.setIsNullable(isNullable);
                     result.add(tableColumn);
                 }
             }

@@ -2,6 +2,8 @@ package generator.core.config.template;
 
 import java.util.List;
 
+import generator.core.config.TableColumn;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -28,6 +30,8 @@ public class ModuleTemplateConfig extends BaseTemplateConfig {
 	private String mapperClassName;
 	
 	private String mapperVariable;
+
+	private List<TableColumn> columns;
 	
 	@Data
 	public static class JavaFieldDesc {

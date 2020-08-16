@@ -30,11 +30,11 @@ import generator.core.utils.TemplateKey;
 
 public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, YmlExcutor {
 	
-	private MybatisExcutor mybatisExcutor;
+	protected MybatisExcutor mybatisExcutor;
 	
-	private ModuleConfig moduleConfig;
+	protected ModuleConfig moduleConfig;
 	
-	private ModulePathManager modulePath;
+	protected ModulePathManager modulePath;
 
 	public ModuleExcutorImpl(MainConfig configuration, ModuleConfig moduleConfig, MybatisExcutor mybatisExcutor) {
 		super(configuration);
