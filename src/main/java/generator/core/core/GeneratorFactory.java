@@ -8,6 +8,7 @@ import generator.core.core.exec.impl.CommonExcutor;
 import generator.core.core.exec.impl.CommonServiceExcutorImpl;
 import generator.core.core.exec.impl.ModuleExcutorImpl;
 import generator.core.core.exec.impl.MybatisExcutorImpl;
+import generator.core.core.exec.impl.MybatisExcutorV2;
 import generator.core.core.exec.impl.ParentExcutor;
 import lombok.Data;
 
@@ -48,7 +49,7 @@ public class GeneratorFactory {
 	
 	protected void initOverrideExcutors(Generator generator) {
 		for(ModuleConfig m : configuration.getModules()) {
-			MybatisExcutorImpl mybatisExcutorImpl = new MybatisExcutorImpl(configuration, m);
+			MybatisExcutorImpl mybatisExcutorImpl = new MybatisExcutorV2(configuration, m);
 			generator.addExcutor(mybatisExcutorImpl);
 		}
 	}
