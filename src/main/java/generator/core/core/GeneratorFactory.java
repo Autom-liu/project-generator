@@ -4,13 +4,10 @@ import generator.core.config.GenerateMode;
 import generator.core.config.MainConfig;
 import generator.core.config.ModuleConfig;
 import generator.core.core.exec.GenerateExcutor;
-import generator.core.core.exec.MybatisExcutor;
 import generator.core.core.exec.impl.CommonExcutor;
 import generator.core.core.exec.impl.CommonServiceExcutorImpl;
 import generator.core.core.exec.impl.ModuleExcutorImpl;
-import generator.core.core.exec.impl.ModuleExcutorV2;
 import generator.core.core.exec.impl.MybatisExcutorImpl;
-import generator.core.core.exec.impl.MybatisExcutorV2;
 import generator.core.core.exec.impl.ParentExcutor;
 import lombok.Data;
 
@@ -51,16 +48,15 @@ public class GeneratorFactory {
 	
 	protected void initOverrideExcutors(Generator generator) {
 		for(ModuleConfig m : configuration.getModules()) {
-			MybatisExcutorImpl mybatisExcutorImpl = new MybatisExcutorV2(configuration, m);
+			MybatisExcutorImpl mybatisExcutorImpl = new MybatisExcutorImpl(configuration, m);
 			generator.addExcutor(mybatisExcutorImpl);
 		}
 	}
 	
 	protected void initModuleExcutors(Generator generator) {
 		for(ModuleConfig m : configuration.getModules()) {
-			MybatisExcutor mybatisExcutor = new MybatisExcutorV2(configuration, m);
-			GenerateExcutor executor = new ModuleExcutorV2(configuration, m, mybatisExcutor);
-			generator.addExcutor(executor);
+			GenerateExcutor excutor = new ModuleExcutorImpl(configuration, m);
+			generator.addExcutor(excutor);
 		}
 	}
 	

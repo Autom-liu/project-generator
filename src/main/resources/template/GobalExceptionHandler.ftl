@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,26 +50,7 @@ public class GobalExceptionHandler {
 			log.warn(request.getRequestURL() + e.getMessage());
 			log.warn("请求参数={}", request.getParameterMap());
 		}
-		return IResult.error(DefaultSysErrorEnum.PARAM_FORMAT_ERROR.getCode(), errorList.get(0), e);
-	}
-
-	/**
-	* 参数校验异常
-	* @param e
-	* @param request
-	* @return
-	*/
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ResponseBody
-	public IResult bindException(MethodArgumentNotValidException e, HttpServletRequest request) {
-		BindingResult bindingResult = e.getBindingResult();
-		List<String> errorList = bindingResult.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList());
-		if(log.isWarnEnabled()) {
-			log.warn(request.getRequestURL() + e.getMessage());
-			log.warn("请求参数={}", request.getParameterMap());
-		}
-		return IResult.error(DefaultSysErrorEnum.PARAM_FORMAT_ERROR.getCode(), errorList.get(0), e);
+		return IResult.error(HttpStatus.BAD_REQUEST.toString(), errorList.get(0), e);
 	}
 	
 	/**

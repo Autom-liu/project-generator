@@ -1,9 +1,5 @@
 spring:
-  profiles:
-    include:
-    - database-dev
-  mvc:
-    throw-exception-if-no-handler-found: true
+  profiles:    include:    - database-dev
 
 website:
   cros-list:

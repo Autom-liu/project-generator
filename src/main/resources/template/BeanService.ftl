@@ -2,7 +2,6 @@ package ${basePackage}.${moduleName}.service;
 
 import java.util.List;
 
-import ${basePackage}.common.exception.BizException;
 import ${basePackage}.common.service.IService;
 import ${basePackage}.common.vo.PageVO;
 import ${basePackage}.${moduleName}.bean.${beanClassName};
@@ -15,8 +14,8 @@ import ${basePackage}.${moduleName}.vo.${voClassName};
  */
 public interface ${className} extends IService<${beanClassName}, ${dtoClassName}, ${voClassName}> {
 	
-	PageVO<${voClassName}> queryPage(${queryClassName} query) throws BizException;
+	PageVO<${voClassName}> queryPage(${queryClassName} query);
 	
-	List<${voClassName}> queryList(${queryClassName} query) throws BizException;
+	List<${voClassName}> queryList(${queryClassName} query);
 	
 }

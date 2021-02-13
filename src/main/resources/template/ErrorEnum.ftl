@@ -4,10 +4,7 @@ public enum ErrorEnum implements IErrorEnum {
 
 	
 	ERRCODE_0000("0000", "success"),
-
-	ERRCODE_0001("0001", "分页参数错误"),
-
-	ERRCODE_0404("0404", "记录不存在"),
+	
 	
 	;
 

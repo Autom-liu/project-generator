@@ -34,9 +34,7 @@ public class TemplateKey {
 
 	public static final String BASE_ORDER_BY_ENUM = "BASE_ORDER_BY_ENUM";
 
-	public static final String BASE_FUNCTION = "BASE_FUNCTION";
-
-	public static final String BASE_MAPPEER = "BASE_MAPPER";
+	public static final String BASE_EXAMPLE = "BASE_EXAMPLE";
 
 	public static final String CROS_CONFIG = "CROS_CONFIG";
 
@@ -55,10 +53,6 @@ public class TemplateKey {
 	public static final String CRITERIA_PROXY = "CRITERIA_PROXY";
 
 	public static final String PAGE_QUERY = "PAGE_QUERY";
-
-	public static final String LAMBDA_COLUMN_CACHE = "LAMBDA_COLUMN_CACHE";
-
-	public static final String QUERY_BUILDER = "QUERY_BUILDER";
 
 	public static final String BASE_SERVICE = "BASE_SERVICE";
 

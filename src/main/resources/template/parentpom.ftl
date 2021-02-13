@@ -18,7 +18,6 @@
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	<java.version>1.8</java.version>
-	<springboot.version>2.1.4.RELEASE</springboot.version>
 	<mapper.starter.version>2.0.3</mapper.starter.version>
 	<mysql.version>5.1.32</mysql.version>
 	<pageHelper.starter.version>1.2.5</pageHelper.starter.version>
@@ -29,7 +28,12 @@
   </properties>
 	<dependencyManagement>
 		<dependencies>
-			<!-- apache-common -->
+			<!-- jackJson注解相关，引入web核心包就不需要再导入了 -->
+	  		<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${r'${fastjson.version}'}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
@@ -63,10 +67,11 @@
 				<artifactId>mapper-spring-boot-starter</artifactId>
 				<version>${r'${mapper.starter.version}'}</version>
 			</dependency>
+			<!--pagehelper -->
 			<dependency>
-				<groupId>org.springframework.data</groupId>
-				<artifactId>spring-data-commons</artifactId>
-				<version>${r'${springboot.version}'}</version>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>${r'${pageHelper.starter.version}'}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

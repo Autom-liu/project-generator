@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import generator.core.core.exec.GenerateExcutor;
-import generator.core.utils.DBUtil;
 import lombok.Data;
 
 @Data
@@ -24,7 +23,6 @@ public class Generator {
 		for(GenerateExcutor excutor : excutors) {
 			excutor.generate();
 		}
-		DBUtil.close();
 	}
 	
 	

@@ -29,8 +29,8 @@
 		<artifactId>mapper-spring-boot-starter</artifactId>
 	</dependency>
 	<dependency>
-	  <groupId>org.springframework.data</groupId>
-	  <artifactId>spring-data-commons</artifactId>
+		<groupId>com.github.pagehelper</groupId>
+		<artifactId>pagehelper-spring-boot-starter</artifactId>
 	</dependency>
 	<!-- encrpty application configuration -->
 	<dependency>

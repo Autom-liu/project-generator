@@ -31,20 +31,15 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		GeneratorUtil.putTemplate(TemplateKey.BASE_BIZ_ENUM, templateString1);
 		GeneratorUtil.generate(TemplateKey.BASE_BIZ_ENUM, toPath1, templateConfig);
 
-		Path toPath2 = pathManager.getCommonSvcBasePath().resolve("BaseFunction.java");
-		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseFunction.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.BASE_FUNCTION, templateString2);
-		GeneratorUtil.generate(TemplateKey.BASE_FUNCTION, toPath2, templateConfig);
+		Path toPath2 = pathManager.getCommonSvcBasePath().resolve("BaseExample.java");
+		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseExample.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.BASE_EXAMPLE, templateString2);
+		GeneratorUtil.generate(TemplateKey.BASE_EXAMPLE, toPath2, templateConfig);
 
 		Path toPath3 = pathManager.getCommonSvcBasePath().resolve("BaseOrderByEnum.java");
 		String templateString3 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseOrderByEnum.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.BASE_ORDER_BY_ENUM, templateString3);
 		GeneratorUtil.generate(TemplateKey.BASE_ORDER_BY_ENUM, toPath3, templateConfig);
-
-		Path toPath4 = pathManager.getCommonSvcBasePath().resolve("BaseMapper.java");
-		String templateString4 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseMapper.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.BASE_MAPPEER, templateString4);
-		GeneratorUtil.generate(TemplateKey.BASE_MAPPEER, toPath4, templateConfig);
 	}
 
 	@Override
@@ -105,16 +100,6 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("PageQuery.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.PAGE_QUERY, templateString1);
 		GeneratorUtil.generate(TemplateKey.PAGE_QUERY, toPath1, templateConfig);
-
-		Path toPath2 = pathManager.getCommonSvcQueryPath().resolve("LambdaColumnCache.java");
-		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("LambdaColumnCache.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.LAMBDA_COLUMN_CACHE, templateString2);
-		GeneratorUtil.generate(TemplateKey.LAMBDA_COLUMN_CACHE, toPath2, templateConfig);
-
-		Path toPath3 = pathManager.getCommonSvcQueryPath().resolve("QueryBuilder.java");
-		String templateString3 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("QueryBuilder.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.QUERY_BUILDER, templateString3);
-		GeneratorUtil.generate(TemplateKey.QUERY_BUILDER, toPath3, templateConfig);
 	}
 
 	@Override
@@ -128,6 +113,11 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("IService.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.ISERVICE, templateString2);
 		GeneratorUtil.generate(TemplateKey.ISERVICE, toPath2, templateConfig);
+
+		Path toPath3 = pathManager.getCommonSvcServicePath().resolve("Mapper.java");
+		String templateString3 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("Mapper.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.MAPPER, templateString3);
+		GeneratorUtil.generate(TemplateKey.MAPPER, toPath3, templateConfig);
 	}
 
 	@Override

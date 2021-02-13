@@ -30,16 +30,16 @@ import generator.core.utils.TemplateKey;
 
 public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, YmlExcutor {
 	
-	protected MybatisExcutor mybatisExcutor;
+	private MybatisExcutor mybatisExcutor;
 	
-	protected ModuleConfig moduleConfig;
+	private ModuleConfig moduleConfig;
 	
-	protected ModulePathManager modulePath;
+	private ModulePathManager modulePath;
 
-	public ModuleExcutorImpl(MainConfig configuration, ModuleConfig moduleConfig, MybatisExcutor mybatisExcutor) {
+	public ModuleExcutorImpl(MainConfig configuration, ModuleConfig moduleConfig) {
 		super(configuration);
 		this.moduleConfig = moduleConfig;
-		this.mybatisExcutor = mybatisExcutor;
+		this.mybatisExcutor = new MybatisExcutorImpl(configuration, moduleConfig);
 		Map<String, ModulePathManager> modulePathManagerMap = super.pathManager.getModulePathManagerMap();
 		this.modulePath = modulePathManagerMap.get(moduleConfig.getModuleName());
 	}
@@ -56,6 +56,7 @@ public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, Y
 		String templateString = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("modulepom.ftl"));
 		GeneratorUtil.putTemplate(moduleName, templateString);
 		GeneratorUtil.generate(moduleName, toPath, pomTemplateConfig);
+		
 	}
 
 	@Override
@@ -154,13 +155,6 @@ public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, Y
 		if(!file.exists()) {
 			file.mkdirs();
 		}
-
-		templateConfig.setClassName(templateConfig.getBeanClassName() + "Api");
-		String className = templateConfig.getClassName();
-		Path toPath1 = modulePath.getModuleWebPath().resolve(className + ".java");
-		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BeanApi.ftl"));
-		GeneratorUtil.putTemplate(className, templateString1);
-		GeneratorUtil.generate(className, toPath1, templateConfig);
 	}
 
 	@Override
