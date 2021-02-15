@@ -44,25 +44,7 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 
 	@Override
 	public void configGenerate() throws Exception {
-		Path toPath1 = pathManager.getCommonSvcConfigPath().resolve("CrosConfig.java");
-		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("CrosConfig.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.CROS_CONFIG, templateString1);
-		GeneratorUtil.generate(TemplateKey.CROS_CONFIG, toPath1, templateConfig);
 
-		Path toPath2 = pathManager.getCommonSvcConfigPath().resolve("MvcConverterConfig.java");
-		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("MvcConverterConfig.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.MVC_CONVERTER_CONFIG, templateString2);
-		GeneratorUtil.generate(TemplateKey.MVC_CONVERTER_CONFIG, toPath2, templateConfig);
-
-		Path toPath3 = pathManager.getCommonSvcConfigPath().resolve("WebConfig.java");
-		String templateString3 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("WebConfig.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.WEB_CONFIG, templateString3);
-		GeneratorUtil.generate(TemplateKey.WEB_CONFIG, toPath3, templateConfig);
-
-		Path toPath4 = pathManager.getCommonSvcConfigPath().resolve("WebsiteConfig.java");
-		String templateString4 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("WebsiteConfig.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.WEBSITE_CONFIG, templateString4);
-		GeneratorUtil.generate(TemplateKey.WEBSITE_CONFIG, toPath4, templateConfig);
 	}
 
 	@Override
@@ -80,10 +62,7 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 
 	@Override
 	public void factoryGenerate() throws Exception {
-		Path toPath1 = pathManager.getCommonSvcFactoryPath().resolve("BaseEnumConverterDeserializerFactory.java");
-		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseEnumConverterDeserializerFactory.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.BASEENUM_CONVERTER_DESERIALIZER_FACTORY, templateString1);
-		GeneratorUtil.generate(TemplateKey.BASEENUM_CONVERTER_DESERIALIZER_FACTORY, toPath1, templateConfig);
+
 	}
 
 	@Override
@@ -104,7 +83,7 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 
 	@Override
 	public void serviceGenerate() throws Exception {
-		Path toPath1 = pathManager.getCommonSvcServicePath().resolve("BaseService.java");
+		Path toPath1 = pathManager.getCommonSvcServicePath().resolve("CommonService.java");
 		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseService.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.BASE_SERVICE, templateString1);
 		GeneratorUtil.generate(TemplateKey.BASE_SERVICE, toPath1, templateConfig);
@@ -150,10 +129,10 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 
 	@Override
 	public void webGenerate() throws Exception {
-		Path toPath1 = pathManager.getCommonSvcWebPath().resolve("CommonRequestBodyResolver.java");
-		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("CommonRequestBodyResolver.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.COMMON_REQUEST_BODY_RESOLVER, templateString1);
-		GeneratorUtil.generate(TemplateKey.COMMON_REQUEST_BODY_RESOLVER, toPath1, templateConfig);
+		Path toPath1 = pathManager.getCommonSvcFactoryPath().resolve("BaseEnumConverterDeserializerFactory.java");
+		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseEnumConverterDeserializerFactory.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.BASEENUM_CONVERTER_DESERIALIZER_FACTORY, templateString1);
+		GeneratorUtil.generate(TemplateKey.BASEENUM_CONVERTER_DESERIALIZER_FACTORY, toPath1, templateConfig);
 
 		Path toPath2 = pathManager.getCommonSvcWebPath().resolve("GobalExceptionHandler.java");
 		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("GobalExceptionHandler.ftl"));
@@ -165,20 +144,11 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		GeneratorUtil.putTemplate(TemplateKey.REQUEST_AOP, templateString3);
 		GeneratorUtil.generate(TemplateKey.REQUEST_AOP, toPath3, templateConfig);
 
-		Path toPath4 = pathManager.getCommonSvcWebPath().resolve("RequestPemissionInteceptor.java");
-		String templateString4 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("RequestPemissionInteceptor.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.REQUEST_PEMISSION_INTECEPTOR, templateString4);
-		GeneratorUtil.generate(TemplateKey.REQUEST_PEMISSION_INTECEPTOR, toPath4, templateConfig);
-		
-		Path toPath5 = pathManager.getCommonSvcWebPath().resolve("annotation/CommonRequestBody.java");
-		String templateString5 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("CommonRequestBody.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.COMMON_REQUEST_BODY, templateString5);
-		GeneratorUtil.generate(TemplateKey.COMMON_REQUEST_BODY, toPath5, templateConfig);
-		
-		Path toPath6 = pathManager.getCommonSvcWebPath().resolve("annotation/PermissionRequire.java");
-		String templateString6 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("PermissionRequire.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.PERMISSION_REQUIRE, templateString6);
-		GeneratorUtil.generate(TemplateKey.PERMISSION_REQUIRE, toPath6, templateConfig);
+		Path toPath5 = pathManager.getCommonSvcConfigPath().resolve("WebConfig.java");
+		String templateString5 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("WebConfig.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.WEB_CONFIG, templateString5);
+		GeneratorUtil.generate(TemplateKey.WEB_CONFIG, toPath5, templateConfig);
+
 	}
 
 	@Override

@@ -8,10 +8,6 @@
   <artifactId>${moduleName}</artifactId>
   
   <dependencies>
-    <dependency>
-		<groupId>com.alibaba</groupId>
-		<artifactId>fastjson</artifactId>
-	</dependency>
   	<dependency>
   		<groupId>org.springframework.boot</groupId>
   		<artifactId>spring-boot-starter-logging</artifactId>

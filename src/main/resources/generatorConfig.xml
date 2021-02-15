@@ -18,7 +18,7 @@
   
 
   <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-  	<property name="mappers" value="com.edu.scnu.common.service.Mapper"/>
+<!--  	<property name="mappers" value="com.edu.scnu.common.service.Mapper"/>-->
   </plugin>
 
 

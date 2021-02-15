@@ -7,14 +7,6 @@
   </parent>
   <artifactId>${moduleName}</artifactId>
   <dependencies>
-  	<dependency>
-  		<groupId>com.alibaba</groupId>
-		<artifactId>druid</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.alibaba</groupId>
-		<artifactId>druid-spring-boot-starter</artifactId>
-  	</dependency>
   	<!-- web 核心包 -->
 	<dependency>
 		<groupId>org.springframework.boot</groupId>

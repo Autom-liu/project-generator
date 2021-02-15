@@ -20,7 +20,6 @@ public class Main {
 		GeneratorFactory generatorFactory = new GeneratorFactoryBuilder().build(configReader);
 		Generator generator = generatorFactory.openGenerator();
 		generator.run();
-		
 	}
 	
 	public static void generateTemplateKey(String basePath) throws IOException {

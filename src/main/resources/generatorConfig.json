@@ -1,16 +1,16 @@
 {
 	"generateMode": "INTEGRATE",
-	"projectPath": "G:\\WebSpace\\myJee",
+	"projectPath": "/home/autom/project/java/test",
 	"groupId": "com.edu.scnu",
-	"artifactId": "ssp",
+	"artifactId": "springboot-base",
 	"version": "0.0.1-SNAPSHOT",
 	"basePackage": "com.edu.scnu",
 	"encryKey": "9s1bnDggSHPEc_G3",
 	"databaseConfig": {
 		"driverClass": "com.mysql.jdbc.Driver",
-		"connectIp": "127.0.0.1:3306/test",
+		"connectIp": "127.0.0.1:3306/webadmin",
 		"connectUrl": "jdbc:mysql://${connectIp}?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false",
-		"userId": "root",
+		"userId": "webadmin",
 		"password": "123456",
 		"enableSubPackage": true,
 		"trimString": false,
@@ -18,52 +18,39 @@
 	},
 	"modules": [
 		{
-			"moduleName": "core",
-			"artifactId": "ssp-core",
+			"moduleName": "idnt",
+			"artifactId": "springboot-base-idnt",
 			"enable": true,
-			"mainClass": "CoreApplication",
-			"devLogPath": "G:\\WebSpace\\myJee\\logs\\ssp-core",
-			"prodLogPath": "/var/log/webapps/ssp-core",
+			"mainClass": "IdntApplication",
+			"devLogPath": "/home/autom/project/java/log/springboot-base",
+			"prodLogPath": "/home/autom/project/java/log/springboot-base",
 			"port": "9080",
-			"contextPath": "/api/core",
-			"applicationName": "ssp-core",
+			"contextPath": "/api/idnt",
+			"applicationName": "springboot-base-idnt",
 			"tables": [
 				{
-					"tableName": "bg_navigator",
-					"domainObjectName": "Navigator",
-					"generatedKey": true,
-					"keyColumn": "id",
-					"sqlStatement": "SELECT LAST_INSERT_ID()",
-					"identity": true
-				}
-			]
-		},
-		{
-			"moduleName": "info",
-			"artifactId": "ssp-info",
-			"enable": true,
-			"mainClass": "InfoApplication",
-			"devLogPath": "G:\\WebSpace\\myJee\\logs\\ssp-info",
-			"prodLogPath": "/var/log/webapps/ssp-info",
-			"port": "9083",
-			"contextPath": "/api/info",
-			"applicationName": "ssp-info",
-			"tables": [
-				{
-					"tableName": "bg_category",
-					"domainObjectName": "Category",
-					"generatedKey": true,
-					"keyColumn": "id",
-					"sqlStatement": "SELECT LAST_INSERT_ID()",
-					"identity": true
+					"tableName": "idnt_department",
+					"domainObjectName": "Department"
 				},
 				{
-					"tableName": "bg_tags",
-					"domainObjectName": "Tag",
-					"generatedKey": true,
-					"keyColumn": "id",
-					"sqlStatement": "SELECT LAST_INSERT_ID()",
-					"identity": true
+					"tableName": "idnt_menu",
+					"domainObjectName": "Menu"
+				},
+				{
+					"tableName": "idnt_permission",
+					"domainObjectName": "Permission"
+				},
+				{
+					"tableName": "idnt_role",
+					"domainObjectName": "Role"
+				},
+				{
+					"tableName": "idnt_user",
+					"domainObjectName": "User"
+				},
+				{
+					"tableName": "idnt_dept_role_user_rel",
+					"domainObjectName": "UserRole"
 				}
 			]
 		}

@@ -1,4 +1,4 @@
-package ${basePackage}.${moduleName}.factory;
+package ${basePackage}.${moduleName}.web;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +10,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.stereotype.Component;
 
+import ${basePackage}.${moduleName}.base.BaseBizEnum;
+import ${basePackage}.${moduleName}.enums.DefaultSysErrorEnum;
 import ${basePackage}.${moduleName}.enums.BaseStatusEnum;
 import ${basePackage}.${moduleName}.enums.IErrorEnum;
 import ${basePackage}.${moduleName}.exception.SystemException;
@@ -53,7 +55,7 @@ public class BaseEnumConverterDeserializerFactory extends JsonDeserializer<BaseS
 		Converter converter = this.getConverter(propertyType);
 		Object convertResult = converter.convert(text);
 		if(convertResult == null) {
-			throw new SystemException(IErrorEnum.getInstance("0499", "字段超出枚举范围: " + currentName));
+			throw new SystemException(DefaultSysErrorEnum.OUT_OF_ENUMS, currentName);
 		}
 		return convertResult instanceof BaseStatusEnum ? (BaseStatusEnum) convertResult : null;
 	}

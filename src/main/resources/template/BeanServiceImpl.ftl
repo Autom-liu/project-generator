@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ${basePackage}.common.proxy.CriteriaProxy;
-import ${basePackage}.common.service.BaseService;
+import ${basePackage}.common.service.CommonService;
 import ${basePackage}.common.vo.PageVO;
 import ${basePackage}.${moduleName}.bean.${beanClassName};
 import ${basePackage}.${moduleName}.bean.${beanClassName}Example;
@@ -17,15 +17,20 @@ import ${basePackage}.${moduleName}.service.${serviceClassName};
 import ${basePackage}.${moduleName}.vo.${voClassName};
 
 @Service
-public class ${className} extends BaseService<${beanClassName}, ${dtoClassName}, ${voClassName}> implements ${serviceClassName} {
+public class ${className} extends CommonService<${beanClassName}, ${dtoClassName}, ${voClassName}> implements ${serviceClassName} {
 
-	@Autowired
+
     private ${mapperClassName} ${mapperVariable};
+
+	public ${className}(${mapperClassName} ${mapperVariable}) {
+		super(${mapperVariable}, ${beanClassName}.class, ${dtoClassName}.class, ${voClassName}.class);
+		this.${mapperVariable} = ${mapperVariable};
+	}
 	
 	@Override
 	public PageVO<${voClassName}> queryPage(${queryClassName} query) {
 		
-		${beanClassName}Example example = new ExampleProxy();
+		${beanClassName}Example example = new ${beanClassName}Example();
 		
 		super.handlePageOrder(query, false, example);
 		
@@ -44,15 +49,4 @@ public class ${className} extends BaseService<${beanClassName}, ${dtoClassName},
 		return pageVO.getData();
 	}
 
-	private class ExampleProxy extends ${beanClassName}Example {
-		// 静态代理一下
-		public Criteria createCriteria() {
-			return (Criteria) CriteriaProxy.getInstance(super.createCriteria());
-		}
-		
-		public Criteria or() {
-			return (Criteria) CriteriaProxy.getInstance(super.or());
-		}
-		
-	}
 }
