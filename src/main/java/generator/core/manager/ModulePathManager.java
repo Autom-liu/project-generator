@@ -31,6 +31,8 @@ public class ModulePathManager {
 	private Path moduleVoPath;
 	
 	private Path moduleWebPath;
+
+	private Path moduleEnumsPath;
 	
 	public ModulePathManager(Path basePath, String projectName, String basePackage, String moduleName) {
 		this.moduleBasePath = basePath.resolve(projectName + "-" + moduleName);
@@ -45,6 +47,7 @@ public class ModulePathManager {
 		this.moduleServicePath = this.modulePath.resolve("service");
 		this.moduleServiceImplPath = this.moduleServicePath.resolve("impl");
 		this.moduleVoPath = this.modulePath.resolve("vo");
+		this.moduleEnumsPath = this.modulePath.resolve("enums");
 		this.moduleWebPath = this.modulePath.resolve("web/api");
 	}
 

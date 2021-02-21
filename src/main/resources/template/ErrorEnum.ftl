@@ -1,5 +1,7 @@
 package ${basePackage}.${moduleName}.enums;
 
+import ${basePackage}.common.enums.IErrorEnum;
+
 public enum ErrorEnum implements IErrorEnum {
 
 	

@@ -1,6 +1,7 @@
 package generator.core.core.exec.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
@@ -72,6 +73,7 @@ public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, Y
 			queryGenerate(templateConfig);
 			serviceGenerate(templateConfig);
 			voGenerate(templateConfig);
+			enumsGenerate(templateConfig);
 			webGenerate(templateConfig);
 		}
 		applicationYmlGenerate();
@@ -147,6 +149,14 @@ public class ModuleExcutorImpl extends ParentExcutor implements ModuleExcutor, Y
 		GeneratorUtil.putTemplate(className, templateString);
 		GeneratorUtil.generate(className, toPath, templateConfig);
 		
+	}
+
+	private void enumsGenerate(ModuleTemplateConfig templateConfig) throws IOException {
+
+		Path toPath1 = modulePath.getModuleEnumsPath().resolve("ErrorEnum.java");
+		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("ErrorEnum.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.ERROR_ENUM, templateString1);
+		GeneratorUtil.generate(TemplateKey.ERROR_ENUM, toPath1, templateConfig);
 	}
 
 	@Override

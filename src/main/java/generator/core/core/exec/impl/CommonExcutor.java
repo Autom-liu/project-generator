@@ -66,6 +66,11 @@ public class CommonExcutor extends ParentExcutor implements CommonExecutor {
 		String templateString5 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("NumberUtils.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.NUMBER_UTILS, templateString5);
 		GeneratorUtil.generate(TemplateKey.NUMBER_UTILS, toPath5, templateConfig);
+
+		Path toPath6 = pathManager.getCommonUtilPath().resolve("StringUtils.java");
+		String templateString6 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("StringUtils.ftl"));
+		GeneratorUtil.putTemplate(TemplateKey.STRING_UTILS, templateString6);
+		GeneratorUtil.generate(TemplateKey.STRING_UTILS, toPath6, templateConfig);
 	}
 
 	@Override

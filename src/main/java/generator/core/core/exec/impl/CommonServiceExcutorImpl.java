@@ -54,10 +54,6 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		GeneratorUtil.putTemplate(TemplateKey.DEFAULT_SYSERROR_ENUM, templateString1);
 		GeneratorUtil.generate(TemplateKey.DEFAULT_SYSERROR_ENUM, toPath1, templateConfig);
 
-		Path toPath2 = pathManager.getCommonSvcEnumPath().resolve("ErrorEnum.java");
-		String templateString2 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("ErrorEnum.ftl"));
-		GeneratorUtil.putTemplate(TemplateKey.ERROR_ENUM, templateString2);
-		GeneratorUtil.generate(TemplateKey.ERROR_ENUM, toPath2, templateConfig);
 	}
 
 	@Override
@@ -129,7 +125,7 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 
 	@Override
 	public void webGenerate() throws Exception {
-		Path toPath1 = pathManager.getCommonSvcFactoryPath().resolve("BaseEnumConverterDeserializerFactory.java");
+		Path toPath1 = pathManager.getCommonSvcWebPath().resolve("BaseEnumConverterDeserializerFactory.java");
 		String templateString1 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("BaseEnumConverterDeserializerFactory.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.BASEENUM_CONVERTER_DESERIALIZER_FACTORY, templateString1);
 		GeneratorUtil.generate(TemplateKey.BASEENUM_CONVERTER_DESERIALIZER_FACTORY, toPath1, templateConfig);
@@ -144,7 +140,7 @@ public class CommonServiceExcutorImpl extends ParentExcutor implements CommonSer
 		GeneratorUtil.putTemplate(TemplateKey.REQUEST_AOP, templateString3);
 		GeneratorUtil.generate(TemplateKey.REQUEST_AOP, toPath3, templateConfig);
 
-		Path toPath5 = pathManager.getCommonSvcConfigPath().resolve("WebConfig.java");
+		Path toPath5 = pathManager.getCommonSvcWebPath().resolve("WebConfig.java");
 		String templateString5 = GeneratorUtil.readTemplateString(PathManager.resolveTemplatePath("WebConfig.ftl"));
 		GeneratorUtil.putTemplate(TemplateKey.WEB_CONFIG, templateString5);
 		GeneratorUtil.generate(TemplateKey.WEB_CONFIG, toPath5, templateConfig);

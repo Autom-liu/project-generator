@@ -5,4 +5,4 @@ spring:
 
 mybatis:
   type-aliases-package: ${beanPackage}
-  mapper-locations: classpath:mapper/**.xml,classpath:mapper/ext/**.xml
+  mapper-locations: classpath*:mapper/**.xml,classpath*:mapper/ext/**.xml

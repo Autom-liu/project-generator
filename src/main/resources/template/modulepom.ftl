@@ -23,7 +23,7 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
                 <!-- 指定该Main Class为全局的唯一入口 -->
-                <mainClass>${groupId}.${moduleName}.${mainClass}</mainClass>
+                <mainClass>${groupId}.${mainClass}</mainClass>
                 <layout>ZIP</layout>
             </configuration>
             <executions>

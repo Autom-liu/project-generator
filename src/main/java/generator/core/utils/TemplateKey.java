@@ -29,6 +29,8 @@ public class TemplateKey {
 	public static final String JSON_UTILS = "JSON_UTILS";
 	
 	public static final String NUMBER_UTILS = "NUMBER_UTILS";
+
+	public static final String STRING_UTILS = "STRING_UTILS";
 	
 	public static final String BASE_BIZ_ENUM = "BASE_BIZ_ENUM";
 

@@ -744,8 +744,7 @@ public class MyExampleGenerator extends AbstractJavaGenerator {
                                         String nameFragment, String operator) {
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(new Parameter(introspectedColumn
-                .getFullyQualifiedJavaType(), "value")); //$NON-NLS-1$
+        method.addParameter(new Parameter(introspectedColumn.getFullyQualifiedJavaType(), "value")); //$NON-NLS-1$
         StringBuilder sb = new StringBuilder();
         sb.append(introspectedColumn.getJavaProperty());
         sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
