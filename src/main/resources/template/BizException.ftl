@@ -33,7 +33,7 @@ public class BizException extends Exception {
 	}
 	
 	public String getCode() {
-		return exceptionEnum.getCode();
+		return exceptionEnum.getCode().toString();
 	}
 	
 	public String getMsg() {

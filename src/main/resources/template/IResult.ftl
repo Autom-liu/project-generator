@@ -50,21 +50,21 @@ public interface IResult {
 	
 	public static IResult error(IErrorEnum errorEnum) {
 		IResult result = new Result<>();
-		result.setCode(errorEnum.getCode());
+		result.setCode(errorEnum.getCode().toString());
 		result.setMsg(errorEnum.getMsg());
 		return result;
 	}
 
 	public static IResult error(IErrorEnum errorEnum, String info) {
 		IResult result = new Result<>();
-		result.setCode(errorEnum.getCode());
+		result.setCode(errorEnum.getCode().toString());
 		result.setMsg(errorEnum.getMsg() + info);
 		return result;
 	}
 	
 	public static IResult error(IErrorEnum errorEnum, Throwable t) {
 		IResult result = new Result<>();
-		result.setCode(errorEnum.getCode());
+		result.setCode(errorEnum.getCode().toString());
 		result.setMsg(errorEnum.getMsg());
 		result.setT(t);
 		return result;

@@ -8,7 +8,7 @@ package ${basePackage}.${moduleName}.enums;
  */
 public interface BaseStatusEnum {
 	
-	String getCode();
+	Object getCode();
 	
 	String getMsg();
 	
